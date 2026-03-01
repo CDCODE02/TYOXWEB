@@ -1,8 +1,149 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'motion/react';
 import { Copy, ExternalLink, Send, Twitter, Check } from 'lucide-react';
 
 const CONTRACT_ADDRESS = "G9EazLYv1cVjkGU9eFoMQbFW3b5k8gSVzj8E55QBpump";
+
+const InteractiveParticles = () => {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    let particles: Particle[] = [];
+    let animationFrameId: number;
+    let mouse = { x: -1000, y: -1000 };
+
+    const resize = () => {
+      canvas.width = canvas.offsetWidth;
+      canvas.height = canvas.offsetHeight;
+      initParticles();
+    };
+
+    class Particle {
+      x: number;
+      y: number;
+      size: number;
+      speedX: number;
+      speedY: number;
+      baseX: number;
+      baseY: number;
+
+      constructor() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.baseX = this.x;
+        this.baseY = this.y;
+        this.size = Math.random() * 2 + 1;
+        this.speedX = (Math.random() - 0.5) * 0.5;
+        this.speedY = (Math.random() - 0.5) * 0.5;
+      }
+
+      update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+
+        if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+        if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+
+        // Mouse interaction
+        const dx = mouse.x - this.x;
+        const dy = mouse.y - this.y;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+        const maxDistance = 150;
+
+        if (distance < maxDistance) {
+          const forceDirectionX = dx / distance;
+          const forceDirectionY = dy / distance;
+          const force = (maxDistance - distance) / maxDistance;
+          const directionX = forceDirectionX * force * 2;
+          const directionY = forceDirectionY * force * 2;
+
+          this.x -= directionX;
+          this.y -= directionY;
+        }
+      }
+
+      draw() {
+        if (!ctx) return;
+        ctx.fillStyle = 'rgba(0, 255, 65, 0.3)';
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+
+    const initParticles = () => {
+      particles = [];
+      const numberOfParticles = (canvas.width * canvas.height) / 15000;
+      for (let i = 0; i < numberOfParticles; i++) {
+        particles.push(new Particle());
+      }
+    };
+
+    const animate = () => {
+      if (!ctx) return;
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      
+      for (let i = 0; i < particles.length; i++) {
+        particles[i].update();
+        particles[i].draw();
+        
+        for (let j = i; j < particles.length; j++) {
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+          
+          if (distance < 100) {
+            ctx.beginPath();
+            ctx.strokeStyle = `rgba(0, 255, 65, ${0.1 - distance/1000})`;
+            ctx.lineWidth = 1;
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.stroke();
+          }
+        }
+      }
+      animationFrameId = requestAnimationFrame(animate);
+    };
+
+    const handleMouseMove = (e: MouseEvent) => {
+      const rect = canvas.getBoundingClientRect();
+      mouse.x = e.clientX - rect.left;
+      mouse.y = e.clientY - rect.top;
+    };
+
+    const handleMouseLeave = () => {
+      mouse.x = -1000;
+      mouse.y = -1000;
+    };
+
+    window.addEventListener('resize', resize);
+    canvas.addEventListener('mousemove', handleMouseMove);
+    canvas.addEventListener('mouseleave', handleMouseLeave);
+    
+    resize();
+    animate();
+
+    return () => {
+      window.removeEventListener('resize', resize);
+      canvas.removeEventListener('mousemove', handleMouseMove);
+      canvas.removeEventListener('mouseleave', handleMouseLeave);
+      cancelAnimationFrame(animationFrameId);
+    };
+  }, []);
+
+  return (
+    <canvas
+      ref={canvasRef}
+      className="absolute inset-0 w-full h-full pointer-events-auto z-0"
+    />
+  );
+};
 
 const FloatingShapes = () => (
   <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
@@ -168,13 +309,15 @@ export default function App() {
       </main>
 
       {/* About Section */}
-      <section className="relative z-10 bg-brand-green/20 border-y border-brand-neon/10 py-24 px-6">
-        <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+      <section className="relative z-10 bg-brand-green/20 border-y border-brand-neon/10 py-24 px-6 overflow-hidden">
+        <InteractiveParticles />
+        <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center relative z-10 pointer-events-none">
           <motion.div 
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
+            className="pointer-events-auto"
           >
             <h2 className="text-4xl md:text-5xl font-bold mb-6 uppercase">About <span className="text-brand-neon">$TYOX</span></h2>
             <div className="space-y-4 text-lg text-gray-300 leading-relaxed">
@@ -197,7 +340,7 @@ export default function App() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="grid grid-cols-2 gap-4"
+            className="grid grid-cols-2 gap-4 pointer-events-auto"
           >
             <img src="https://i.ibb.co/k6cb0qP8/TYi-MG2.jpg" alt="TYOX Image 1" className="rounded-2xl w-full h-48 object-cover border border-white/10 hover:border-brand-neon/50 transition-colors" referrerPolicy="no-referrer" />
             <img src="https://i.ibb.co/27PS1vVf/TYi-MG1.jpg" alt="TYOX Image 2" className="rounded-2xl w-full h-48 object-cover border border-white/10 hover:border-brand-neon/50 transition-colors mt-8" referrerPolicy="no-referrer" />
