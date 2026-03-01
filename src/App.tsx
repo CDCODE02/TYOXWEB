@@ -360,7 +360,6 @@ export default function App() {
           </div>
           
           <div className="flex items-center gap-6">
-            <a href="https://tyoxsol.xyz" className="text-gray-500 hover:text-brand-neon transition-colors font-mono text-sm">tyoxsol.xyz</a>
             <a href="https://x.com/the_year_of_x?s=21" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-brand-neon transition-all hover:scale-125">
               <Twitter className="w-5 h-5" />
             </a>
