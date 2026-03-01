@@ -28,10 +28,10 @@ export default function App() {
           <span className="font-bold text-xl tracking-wider text-brand-neon">$TYOX</span>
         </div>
         <div className="flex items-center gap-4">
-          <a href="https://x.com/the_year_of_x?s=21" target="_blank" rel="noopener noreferrer" className="p-2 hover:bg-white/10 rounded-full transition-colors">
+          <a href="https://x.com/the_year_of_x?s=21" target="_blank" rel="noopener noreferrer" className="p-2 hover:bg-white/10 rounded-full transition-all hover:scale-110 hover:text-brand-neon">
             <Twitter className="w-5 h-5" />
           </a>
-          <a href="https://t.me/THE_YEAR_OF_X" target="_blank" rel="noopener noreferrer" className="p-2 hover:bg-white/10 rounded-full transition-colors">
+          <a href="https://t.me/THE_YEAR_OF_X" target="_blank" rel="noopener noreferrer" className="p-2 hover:bg-white/10 rounded-full transition-all hover:scale-110 hover:text-brand-neon">
             <Send className="w-5 h-5" />
           </a>
           <a href="https://join.pump.fun/HSag/zqtir1am" target="_blank" rel="noopener noreferrer" className="hidden sm:flex items-center gap-2 px-4 py-2 bg-brand-neon text-black font-bold rounded-full hover:bg-brand-neon/80 transition-colors">
@@ -234,10 +234,10 @@ export default function App() {
           
           <div className="flex items-center gap-6">
             <a href="https://tyoxsol.xyz" className="text-gray-500 hover:text-brand-neon transition-colors font-mono text-sm">tyoxsol.xyz</a>
-            <a href="https://x.com/the_year_of_x?s=21" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-brand-neon transition-colors">
+            <a href="https://x.com/the_year_of_x?s=21" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-brand-neon transition-all hover:scale-125">
               <Twitter className="w-5 h-5" />
             </a>
-            <a href="https://t.me/THE_YEAR_OF_X" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-brand-neon transition-colors">
+            <a href="https://t.me/THE_YEAR_OF_X" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-brand-neon transition-all hover:scale-125">
               <Send className="w-5 h-5" />
             </a>
           </div>
