@@ -4,6 +4,35 @@ import { Copy, ExternalLink, Send, Twitter, Check } from 'lucide-react';
 
 const CONTRACT_ADDRESS = "G9EazLYv1cVjkGU9eFoMQbFW3b5k8gSVzj8E55QBpump";
 
+const FloatingShapes = () => (
+  <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
+    <motion.div
+      animate={{ y: [0, -30, 0], x: [0, 20, 0], rotate: [0, 180, 360] }}
+      transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+      className="absolute top-[10%] left-[5%] md:left-[10%] text-brand-neon/5 text-[10rem] md:text-[15rem] font-bold select-none leading-none"
+    >
+      X
+    </motion.div>
+    <motion.div
+      animate={{ y: [0, 40, 0], x: [0, -30, 0], rotate: [360, 180, 0] }}
+      transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+      className="absolute top-[50%] right-[5%] md:right-[10%] w-40 h-40 md:w-64 md:h-64 border border-brand-neon/10 rounded-full"
+    />
+    <motion.div
+      animate={{ y: [0, -20, 0], x: [0, -40, 0], rotate: [0, 90, 180] }}
+      transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+      className="absolute top-[20%] right-[20%] md:right-[25%] w-24 h-24 md:w-32 md:h-32 border border-brand-light-green/20 rotate-45"
+    />
+    <motion.div
+      animate={{ y: [0, 50, 0], x: [0, 30, 0], rotate: [0, -180, -360] }}
+      transition={{ duration: 22, repeat: Infinity, ease: "linear" }}
+      className="absolute bottom-[10%] left-[20%] md:left-[25%] text-brand-light-green/10 text-[8rem] md:text-[10rem] font-bold select-none leading-none"
+    >
+      X
+    </motion.div>
+  </div>
+);
+
 export default function App() {
   const [copied, setCopied] = useState(false);
 
@@ -41,8 +70,10 @@ export default function App() {
       </nav>
 
       {/* Hero Section */}
-      <main className="relative z-10 flex flex-col items-center justify-center px-4 pt-20 pb-32 max-w-5xl mx-auto text-center">
-        <motion.div
+      <main className="relative z-10 w-full overflow-hidden">
+        <FloatingShapes />
+        <div className="flex flex-col items-center justify-center px-4 pt-20 pb-32 max-w-5xl mx-auto text-center relative z-10">
+          <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5 }}
@@ -119,6 +150,7 @@ export default function App() {
             </button>
           </div>
         </motion.div>
+        </div>
       </main>
 
       {/* About Section */}
@@ -160,8 +192,10 @@ export default function App() {
       </section>
 
       {/* Chart Section */}
-      <section className="relative z-10 py-24 px-6 max-w-6xl mx-auto">
-        <motion.h2 
+      <section className="relative z-10 w-full overflow-hidden">
+        <FloatingShapes />
+        <div className="py-24 px-6 max-w-6xl mx-auto relative z-10">
+          <motion.h2 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -186,6 +220,7 @@ export default function App() {
             <iframe src="https://dexscreener.com/solana/61TkZUcepnsusB445fpyT5EYByA8qq4LDYeAv1ofE6jL?embed=1&loadChartSettings=0&chartLeftToolbar=0&chartDefaultOnMobile=1&chartTheme=dark&theme=dark&chartStyle=0&chartType=usd&interval=15"></iframe>
           </div>
         </motion.div>
+        </div>
       </section>
 
       {/* Gallery Section */}
