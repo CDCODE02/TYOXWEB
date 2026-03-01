@@ -200,7 +200,7 @@ export default function App() {
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-3">
             <img src="https://i.ibb.co/SD3HnsJG/TYOXLOGO.png" alt="$TYOX Logo" className="w-8 h-8 rounded-full grayscale opacity-50" referrerPolicy="no-referrer" />
-            <span className="font-bold text-gray-500">© 2024 THE YEAR OF X. All rights reserved.</span>
+            <span className="font-bold text-gray-500">© 2026 THE YEAR OF X. All rights reserved.</span>
           </div>
           
           <div className="flex items-center gap-6">
