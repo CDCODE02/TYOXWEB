@@ -159,6 +159,35 @@ export default function App() {
         </div>
       </section>
 
+      {/* Chart Section */}
+      <section className="relative z-10 py-24 px-6 max-w-6xl mx-auto">
+        <motion.h2 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-3xl md:text-4xl font-bold mb-12 uppercase text-center"
+        >
+          Live <span className="text-brand-neon">Chart</span>
+        </motion.h2>
+        
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="rounded-3xl overflow-hidden border border-white/10 hover:border-brand-neon/50 transition-colors bg-[#0a0a0a]"
+        >
+          <style dangerouslySetInnerHTML={{__html: `
+            #dexscreener-embed{position:relative;width:100%;padding-bottom:125%;}
+            @media(min-width:1400px){#dexscreener-embed{padding-bottom:65%;}}
+            #dexscreener-embed iframe{position:absolute;width:100%;height:100%;top:0;left:0;border:0;}
+          `}} />
+          <div id="dexscreener-embed">
+            <iframe src="https://dexscreener.com/solana/61TkZUcepnsusB445fpyT5EYByA8qq4LDYeAv1ofE6jL?embed=1&loadChartSettings=0&chartLeftToolbar=0&chartDefaultOnMobile=1&chartTheme=dark&theme=dark&chartStyle=0&chartType=usd&interval=15"></iframe>
+          </div>
+        </motion.div>
+      </section>
+
       {/* Gallery Section */}
       <section className="relative z-10 py-24 px-6 max-w-6xl mx-auto text-center">
         <motion.h2 
