@@ -259,6 +259,84 @@ export default function App() {
         </div>
       </section>
 
+      {/* How to Buy Section */}
+      <section className="relative z-10 bg-brand-green/20 border-y border-brand-neon/10 py-24 px-6">
+        <div className="max-w-4xl mx-auto">
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-3xl md:text-4xl font-bold mb-12 uppercase text-center"
+          >
+            How to <span className="text-brand-neon">Buy</span>
+          </motion.h2>
+
+          <div className="space-y-6">
+            <motion.div 
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              className="bg-black/50 border border-white/10 rounded-2xl p-6 hover:border-brand-neon/50 transition-colors flex flex-col md:flex-row gap-6 items-start md:items-center"
+            >
+              <div className="w-12 h-12 rounded-full bg-brand-neon/20 text-brand-neon flex items-center justify-center font-bold text-xl shrink-0">1</div>
+              <div>
+                <h3 className="text-xl font-bold mb-2">Create a Wallet</h3>
+                <p className="text-gray-400">Download Phantom or your wallet of choice from the app store or google play store for free. Desktop users, download the google chrome extension by going to phantom.app.</p>
+              </div>
+            </motion.div>
+
+            <motion.div 
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="bg-black/50 border border-white/10 rounded-2xl p-6 hover:border-brand-neon/50 transition-colors flex flex-col md:flex-row gap-6 items-start md:items-center"
+            >
+              <div className="w-12 h-12 rounded-full bg-brand-neon/20 text-brand-neon flex items-center justify-center font-bold text-xl shrink-0">2</div>
+              <div>
+                <h3 className="text-xl font-bold mb-2">Get Some SOL</h3>
+                <p className="text-gray-400">Have SOL in your wallet to switch to $TYOX. If you don't have any SOL, you can buy directly on phantom, transfer from another wallet, or buy on another exchange and send it to your wallet.</p>
+              </div>
+            </motion.div>
+
+            <motion.div 
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              className="bg-black/50 border border-white/10 rounded-2xl p-6 hover:border-brand-neon/50 transition-colors flex flex-col md:flex-row gap-6 items-start md:items-center"
+            >
+              <div className="w-12 h-12 rounded-full bg-brand-neon/20 text-brand-neon flex items-center justify-center font-bold text-xl shrink-0">3</div>
+              <div className="flex-1">
+                <h3 className="text-xl font-bold mb-2">Go to Pump.fun</h3>
+                <p className="text-gray-400 mb-4">Connect your wallet to Pump.fun. Paste the $TYOX token address, select $TYOX, and confirm.</p>
+                <a href="https://join.pump.fun/HSag/zqtir1am" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-brand-neon hover:text-white transition-colors font-bold text-sm">
+                  Buy on Pump.fun <ExternalLink className="w-4 h-4" />
+                </a>
+              </div>
+            </motion.div>
+
+            <motion.div 
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+              className="bg-black/50 border border-white/10 rounded-2xl p-6 hover:border-brand-neon/50 transition-colors flex flex-col md:flex-row gap-6 items-start md:items-center"
+            >
+              <div className="w-12 h-12 rounded-full bg-brand-neon/20 text-brand-neon flex items-center justify-center font-bold text-xl shrink-0">4</div>
+              <div className="flex-1">
+                <h3 className="text-xl font-bold mb-2">Track on DexScreener</h3>
+                <p className="text-gray-400 mb-4">You can view the live chart, recent trades, and market cap of $TYOX directly on DexScreener.</p>
+                <a href="https://dexscreener.com/solana/61TkZUcepnsusB445fpyT5EYByA8qq4LDYeAv1ofE6jL" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-brand-neon hover:text-white transition-colors font-bold text-sm">
+                  View on DexScreener <ExternalLink className="w-4 h-4" />
+                </a>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
       {/* Footer */}
       <footer className="relative z-10 border-t border-white/10 bg-black py-12 px-6">
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
