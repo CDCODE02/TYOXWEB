@@ -140,7 +140,7 @@ export default function App() {
           <span className="text-sm text-gray-500 uppercase tracking-widest font-bold">Token Contract Address</span>
           <div 
             onClick={handleCopy}
-            className="flex items-center justify-between w-full bg-white/5 border border-white/10 rounded-xl p-4 cursor-pointer hover:bg-white/10 transition-colors group"
+            className="flex items-center justify-between w-full bg-white/5 border border-white/10 rounded-xl p-4 cursor-pointer hover:bg-white/10 transition-colors group relative"
           >
             <span className="font-mono text-sm md:text-base text-gray-300 truncate mr-4">
               {CONTRACT_ADDRESS}
@@ -148,6 +148,20 @@ export default function App() {
             <button className="p-2 bg-brand-neon/10 text-brand-neon rounded-lg group-hover:bg-brand-neon group-hover:text-black transition-colors shrink-0">
               {copied ? <Check className="w-5 h-5" /> : <Copy className="w-5 h-5" />}
             </button>
+            
+            {/* Tooltip */}
+            <div className="absolute -top-12 left-1/2 -translate-x-1/2 bg-brand-neon text-black px-3 py-1.5 rounded-lg text-sm font-bold opacity-0 group-hover:opacity-100 transition-all duration-300 whitespace-nowrap pointer-events-none flex items-center gap-1.5 shadow-[0_0_15px_rgba(0,255,65,0.4)] translate-y-2 group-hover:translate-y-0">
+              {copied ? (
+                <>
+                  <Check className="w-4 h-4" /> Contract address copied!
+                </>
+              ) : (
+                <>
+                  <Copy className="w-4 h-4" /> Click to copy
+                </>
+              )}
+              <div className="absolute -bottom-1.5 left-1/2 -translate-x-1/2 w-3 h-3 bg-brand-neon rotate-45"></div>
+            </div>
           </div>
         </motion.div>
         </div>
